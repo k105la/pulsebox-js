@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> PulseBox </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./index.css" media="screen" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet"> 
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+</head>
+
+<body>
+
+<div class="container" style="margin: 200px 0px 0px 0px;">
+  <h1 class="header"><b>Pulse</b>Box</h1>
+  <p class="intro-text hidden" id="intro-text">Take a ten second video or upload one. <br>When done you can sign out and <br>proceed to using the <a href="https://github.com/akilhylton/pulsetracker" target="__blank">pulsetracker</a>. </p>
+
+<div class="progress hidden" id="progress-bar">
+ <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+<div id="sign-in-form" class="hidden">
+ 
+  <label class="mdc-text-field mdc-text-field--outlined">
+    <input type="email" autocomplete="off" class="mdc-text-field__input input" aria-labelledby="my-label-id" id="email" name="email" placeholder="email" value="">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="email-label-id"></span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
+  </label>
+ <br>
+  <label class="mdc-text-field mdc-text-field--outlined">
+    <input type="password" class="mdc-text-field__input input" aria-labelledby="my-label-id" id="password" name="password" placeholder="password" value="">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="pass-label-id"></span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
+  </label>
+  
+</div>
+
+<div class="capture-button">
+
+  <label class="btn btn-outline-primary btn-lg hidden" id="capture-button">
+    CAPTURE
+  <input type="file" style="display:none;" name="file" accept="video/*" capture="environment" id="upload"/>
+  </label>
+  <br>
+  <button type="button" class="btn btn-dark" id="sign-in">Sign in</button>
+  <button type="button" class="btn btn-outline-dark hidden" id="sign-up">Sign up</button>
+</div>
+
+</div>
+<span class="credits">Code by <a href="https://github.com/akilhylton/">Akil</a>.</span>
+
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+  <script async src="./index.js" type="text/javascript"></script>
+</body>
+</html>
