@@ -39,7 +39,6 @@ function handleSignUp() {
     // Handle Errors here.
     let errorCode = error.code;
     let errorMessage = error.message;
-
     if (errorCode == 'auth/weak-password') {
       alert('The password is too weak.');
     } else {
@@ -97,17 +96,36 @@ function toggleSignIn() {
 function uploadVideoToFirebase(event) {
         event.stopPropagation();
         event.preventDefault();
-        const auth = firebase.auth()
         const storage = firebase.storage().ref();
-
         let file = event.target.files[0];
-
         let metadata = {
           'contentType': file.type
         };
         
         firebase.auth().onAuthStateChanged(function(user) {
           if(user) {
+
+            let pulseBox = storage.child('data/' + user.uid);
+
+                // Find all the prefixes and items.
+                pulseBox.listAll().then(function(res) {
+                    res.prefixes.forEach(function(folderRef) {
+                    // All the prefixes under listRef.
+                    // You may call listAll() recursively on them.;
+                    });
+                    res.items.forEach(function(itemRef) {
+                    // All the items under listRef
+                    let pulseCurrentStorage = storage.child(itemRef.location.path_)
+                    pulseCurrentStorage.delete().then(function() {
+                        console.log('Cleaning ' + user.uid + ' storage box.');
+                    });
+                    console.log(itemRef.location.path_);
+
+                    });
+                }).catch(function(error) {
+            // Uh-oh, an error occurred!
+            });
+              
           storage.child('data/' + user.uid + '/' + file.name).put(file, metadata).on('state_changed', function(snapshot) {
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             if (progress > 0) {
@@ -126,27 +144,34 @@ function uploadVideoToFirebase(event) {
   } 
 
 function initApp() {
-
   firebase.auth().onAuthStateChanged(function(user) {
-      if(user) {    
+      if(user) { 
+          document.getElementById('user-uid').textContent = user.uid;
           document.getElementById('capture-button').addEventListener('change', uploadVideoToFirebase, false);
           document.getElementById('capture-button').disabled = true;    
           document.getElementById('sign-in').textContent = "Sign out";
           document.getElementById('sign-in-form').classList.add('hidden');
           document.getElementById('capture-button').classList.remove('hidden');
           document.getElementById('sign-up').classList.add('hidden');
-          document.getElementById('intro-text').classList.remove('hidden');
           document.getElementById('progress-bar').classList.add('hidden');
+          document.getElementById('title-text').classList.add('hidden');
+          document.getElementById('navigation').classList.remove('hidden');
+          document.getElementById('login-alert').classList.remove('hidden');
+          document.getElementById('uid-badge').classList.remove('hidden');
           console.log("logged in");
       }
       else {
+        document.getElementById('user-uid').textContent = "";
         document.getElementById('capture-button').addEventListener('change', uploadVideoToFirebase, true);
         document.getElementById('sign-in').textContent = "Sign in";
         document.getElementById('sign-in-form').classList.remove('hidden');
         document.getElementById('capture-button').classList.add('hidden');
         document.getElementById('sign-up').classList.remove('hidden');
-        document.getElementById('intro-text').classList.add('hidden');
         document.getElementById('progress-bar').classList.add('hidden');
+        document.getElementById('title-text').classList.remove('hidden');
+        document.getElementById('navigation').classList.add('hidden');
+        document.getElementById('login-alert').classList.add('hidden');
+        document.getElementById('uid-badge').classList.add('hidden');
         console.log("logged out");
       }
   });
@@ -155,5 +180,5 @@ function initApp() {
 }
 
 window.onload = function() {
-  initApp();
+    initApp();
 };
