@@ -185,7 +185,7 @@ function initApp() {
       console.log("logged out");
     }
   });
-  $('.alert').alert()
+  $(".alert").alert();
   document
     .getElementById("sign-in")
     .addEventListener("click", toggleSignIn, false);

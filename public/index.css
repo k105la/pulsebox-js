@@ -24,6 +24,7 @@ h1 {
   font-family: "Roboto", sans-serif;
   text-align: center;
 }
+
 form {
   display: inline-block;
 }
@@ -58,11 +59,14 @@ span.credits {
   margin-left: 0.5em;
 }
 
-@media (max-width: 900px) {
+@media screen and (max-width: 767px) {
   h1 {
-    font-size: 3em;
+    font-size: 2.75em;
   }
-  .intro-text {
-    font-size: 0.8em;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  h1 {
+    font-size: 3.5em;
   }
 }
