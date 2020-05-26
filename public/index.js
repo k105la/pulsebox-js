@@ -54,10 +54,7 @@ function handleSignUp() {
  * Handles the sign in button press.
  */
 function toggleSignIn() {
-  let numberOfClicks = 0;
-  if (numberOfClicks >= 0) {
     if (firebase.auth().currentUser) {
-      numberOfClicks++;
       firebase.auth().signOut();
     } else {
       var email = document.getElementById("email").value;
@@ -87,12 +84,7 @@ function toggleSignIn() {
           console.log(error);
           document.getElementById("sign-in").disabled = false;
         });
-    }
-  }
-  if (numberOfClicks == 1) {
-    console.log("refreshing");
-    window.location.reload(true);
-  }
+    }  
 }
 
 function uploadVideoToFirebase(event) {
