@@ -1,70 +1,68 @@
 body {
-    text-align: center;
+  text-align: center;
 }
 
 .container {
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #capture-button {
-    margin: 1em 0 0.75em 0; 
+  margin: 1em 0 0.75em 0;
 }
 .header {
-    color: Dodgerblue;
+  color: Dodgerblue;
 }
 
 h1 {
-    text-transform: uppercase;
-    font-size: 5em;
-    letter-spacing: 0.15em;
-    font-weight: 300; 
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
+  text-transform: uppercase;
+  font-size: 5em;
+  letter-spacing: 0.15em;
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  text-align: center;
 }
 form {
-    display: inline-block;
+  display: inline-block;
 }
 
 span.credits {
-    bottom: 1%;
-    right: 1%;
-    position: fixed;
-    font-size: 0.9em;
-    color: dodgerblue;
+  bottom: 1%;
+  right: 1%;
+  position: fixed;
+  font-size: 0.9em;
+  color: dodgerblue;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 .hidden-margin {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 #sign-in-form {
-    margin-top: 1.25em;
+  margin-top: 1.25em;
 }
 .input-container {
-    padding-bottom: 0.8em;
+  padding-bottom: 0.8em;
 }
 .progress {
-    margin-top: 2.5em;
+  margin-top: 2.5em;
 }
 
 #user-uid {
-    color: Dodgerblue;
-    font-weight: bold;
-    margin-left: 0.5em;
+  color: Dodgerblue;
+  font-weight: bold;
+  margin-left: 0.5em;
 }
 
-
-@media (max-width: 900px) { 
-    h1 {
-        font-size: 3em; 
-    }
-    .intro-text {
-        font-size: 0.8em;
-    }
-
+@media (max-width: 900px) {
+  h1 {
+    font-size: 3em;
+  }
+  .intro-text {
+    font-size: 0.8em;
+  }
 }
