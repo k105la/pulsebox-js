@@ -3,7 +3,7 @@
 ## 💭 Background
 pulsebox is the data collector and storage solution for managing data between [pulsetracker](https://github.com/akilhylton/pulsetracker).
 
-## Who is the app for?
+## Who is this app for?
 This app allows developers to easily record and upload heart rate
 data. It's a touch-based system where users will place one of their fingers on the back camera while the flash is present. The user will record a 10-second video that can then be uploaded to pulsebox for later processing by [pulsetracker].(https://github.com/akilhylton/pulsetracker). 
 
