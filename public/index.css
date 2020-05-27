@@ -16,15 +16,6 @@ body {
   color: Dodgerblue;
 }
 
-h1 {
-  text-transform: uppercase;
-  font-size: 5em;
-  letter-spacing: 0.15em;
-  font-weight: 300;
-  font-family: "Roboto", sans-serif;
-  text-align: center;
-}
-
 form {
   display: inline-block;
 }
@@ -37,14 +28,14 @@ span.credits {
   color: dodgerblue;
 }
 
+.logo {
+  max-width: 85%;
+}
 .hidden {
   display: none;
 }
 .hidden-margin {
   margin-right: 1rem;
-}
-#sign-in-form {
-  margin-top: 1.25em;
 }
 .input-container {
   padding-bottom: 0.8em;
@@ -52,21 +43,14 @@ span.credits {
 .progress {
   margin-top: 2.5em;
 }
-
 #user-uid {
   color: Dodgerblue;
   font-weight: bold;
   margin-left: 0.5em;
 }
 
-@media screen and (max-width: 767px) {
-  h1 {
-    font-size: 2.75em;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  h1 {
-    font-size: 3.5em;
+@media screen and (min-width: 900px) and (-webkit-min-device-pixel-ratio: 1) {
+  .logo {
+    margin-bottom: 5em;
   }
 }

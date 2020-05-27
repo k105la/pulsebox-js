@@ -54,37 +54,37 @@ function handleSignUp() {
  * Handles the sign in button press.
  */
 function toggleSignIn() {
-    if (firebase.auth().currentUser) {
-      firebase.auth().signOut();
-    } else {
-      var email = document.getElementById("email").value;
-      var password = document.getElementById("password").value;
-      if (email.length < 4) {
-        alert("Please enter an email address.");
-        return;
-      }
-      if (password.length < 4) {
-        alert("Please enter a password.");
-        return;
-      }
+  if (firebase.auth().currentUser) {
+    firebase.auth().signOut();
+  } else {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    if (email.length < 4) {
+      alert("Please enter an email address.");
+      return;
+    }
+    if (password.length < 4) {
+      alert("Please enter a password.");
+      return;
+    }
 
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .catch(function (error) {
-          // Handle Errors here.
-          let errorCode = error.code;
-          let errorMessage = error.message;
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(function (error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
 
-          if (errorCode === "auth/wrong-password") {
-            alert("Wrong password.");
-          } else {
-            alert(errorMessage);
-          }
-          console.log(error);
-          document.getElementById("sign-in").disabled = false;
-        });
-    }  
+        if (errorCode === "auth/wrong-password") {
+          alert("Wrong password.");
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+        document.getElementById("sign-in").disabled = false;
+      });
+  }
 }
 
 function uploadVideoToFirebase(event) {
@@ -155,7 +155,7 @@ function initApp() {
       document.getElementById("capture-button").classList.remove("hidden");
       document.getElementById("sign-up").classList.add("hidden");
       document.getElementById("progress-bar").classList.add("hidden");
-      document.getElementById("title-text").classList.add("hidden");
+      document.getElementById("pulse-logo").classList.add("hidden");
       document.getElementById("navigation").classList.remove("hidden");
       document.getElementById("login-alert").classList.remove("hidden");
       document.getElementById("uid-badge").classList.remove("hidden");
@@ -170,7 +170,7 @@ function initApp() {
       document.getElementById("capture-button").classList.add("hidden");
       document.getElementById("sign-up").classList.remove("hidden");
       document.getElementById("progress-bar").classList.add("hidden");
-      document.getElementById("title-text").classList.remove("hidden");
+      document.getElementById("pulse-logo").classList.remove("hidden");
       document.getElementById("navigation").classList.add("hidden");
       document.getElementById("login-alert").classList.add("hidden");
       document.getElementById("uid-badge").classList.add("hidden");
