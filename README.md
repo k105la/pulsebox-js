@@ -1,5 +1,4 @@
-# pulsebox-js
-
+![pulsebox](./public/images/PULSEBOX-V1.svg)
 ## 💭 Background
 pulsebox is the data collector and storage solution for managing data between [pulsetracker](https://github.com/akilhylton/pulsetracker).
 
