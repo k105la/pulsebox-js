@@ -8,83 +8,49 @@ let firebaseConfig = {
   appId: "1:118237267477:web:ccee5e3ab7928a8ce4301c",
   measurementId: "G-0Q1RSLYZVN",
 };
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
 
-function signInButton() {
-  const emailText = document.getElementById("email");
-  const passwordText = document.getElementById("password");
-  signin.onclick = function (event) {
-    const email = emailText.value;
-    const pass = passwordText.value;
-    const auth = firebase.auth();
-    const promise = auth.createUserWithEmailAndPassword(email, pass);
-    promise.catch((e) => console.log(e.message));
-  };
-}
+function googleSignInButton() {
+  const auth = firebase.auth();
+  let provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch(function(error) {
+    if (error.code === 'auth/account-exists-with-different-credential') {
 
-function handleSignUp() {
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
-  if (email.length < 4) {
-    alert("Please enter an email address.");
-    return;
-  }
-  if (password.length < 4) {
-    alert("Please enter a password.");
-    return;
-  }
+      let pendingCred = error.credential;
+      let email = error.email;
+      auth.fetchSignInMethodsForEmail(email).then(function(methods) {
 
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(email, password)
-    .catch(function (error) {
-      // Handle Errors here.
-      let errorCode = error.code;
-      let errorMessage = error.message;
-      if (errorCode == "auth/weak-password") {
-        alert("The password is too weak.");
-      } else {
-        alert(errorMessage);
-      }
-      console.log(error);
-    });
-}
-/**
- * Handles the sign in button press.
- */
-function toggleSignIn() {
-  if (firebase.auth().currentUser) {
-    firebase.auth().signOut();
-  } else {
-    var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
-    if (email.length < 4) {
-      alert("Please enter an email address.");
-      return;
-    }
-    if (password.length < 4) {
-      alert("Please enter a password.");
-      return;
-    }
+        if (methods[0] === 'password') {
 
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(function (error) {
-        // Handle Errors here.
-        let errorCode = error.code;
-        let errorMessage = error.message;
+          let password = promptUserForPassword(); 
+          auth.signInWithEmailAndPassword(email, password).then(function(user) {
 
-        if (errorCode === "auth/wrong-password") {
-          alert("Wrong password.");
-        } else {
-          alert(errorMessage);
+            return user.linkWithCredential(pendingCred);
+          }).then(function() {
+        
+          });
+          return;
         }
-        console.log(error);
-        document.getElementById("sign-in").disabled = false;
+
+        let provider = getProviderForProviderId(methods[0]);
+
+        auth.signInWithPopup(provider).then(function(result) {
+          result.user.linkAndRetrieveDataWithCredential(pendingCred).then(function(usercred) {
+ 
+          });
+        });
       });
-  }
+    }
+  });
+}
+
+function signOut() {
+  firebase.auth().signOut().then(function() {
+    // Sign-out successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
 }
 
 function uploadVideoToFirebase(event) {
@@ -109,29 +75,27 @@ function uploadVideoToFirebase(event) {
             // You may call listAll() recursively on them.;
           });
           res.items.forEach(function (itemRef) {
-            // All the items under listRef
             let pulseCurrentStorage = storage.child(itemRef.location.path_);
             pulseCurrentStorage.delete().then(function () {
               console.log("Cleaning " + user.uid + " storage box.");
             });
-            console.log(itemRef.location.path_);
           });
         })
         .catch(function (error) {
-          // Uh-oh, an error occurred!
+
         });
 
       storage
         .child("data/" + user.uid + "/" + file.name)
         .put(file, metadata)
         .on("state_changed", function (snapshot) {
-          var progress =
+          let progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           if (progress > 0) {
             document.getElementById("progress-bar").classList.remove("hidden");
           }
           document.getElementById("capture-button").classList.add("hidden");
-          console.log("Upload is " + progress + "% done");
+          
           document.querySelector(".progress-bar").style.width = progress + "%";
           console.log("Uploaded", snapshot.totalBytes, "bytes.");
         })
@@ -143,17 +107,19 @@ function uploadVideoToFirebase(event) {
 }
 
 function initApp() {
+  signOut();
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+      console.log(user.displayName);
+      document.getElementById("welcome-text").textContent = "Welcome, "+ user.displayName
       document.getElementById("user-uid").textContent = user.uid;
       document
         .getElementById("capture-button")
         .addEventListener("change", uploadVideoToFirebase, false);
-      document.getElementById("capture-button").disabled = true;
-      document.getElementById("sign-in").textContent = "Sign out";
-      document.getElementById("sign-in-form").classList.add("hidden");
+      document.body.style.background = "white"
+      document.getElementById("sign-in").classList.add("hidden");
       document.getElementById("capture-button").classList.remove("hidden");
-      document.getElementById("sign-up").classList.add("hidden");
+      document.getElementById("sign-out").classList.remove("hidden");
       document.getElementById("progress-bar").classList.add("hidden");
       document.getElementById("pulse-logo").classList.add("hidden");
       document.getElementById("navigation").classList.remove("hidden");
@@ -161,14 +127,17 @@ function initApp() {
       document.getElementById("uid-badge").classList.remove("hidden");
       console.log("logged in");
     } else {
+      
+      document.body.style.background = "#3ED7F9"
+      document.getElementById("welcome-text").textContent = "";
       document.getElementById("user-uid").textContent = "";
       document
         .getElementById("capture-button")
         .addEventListener("change", uploadVideoToFirebase, true);
-      document.getElementById("sign-in").textContent = "Sign in";
-      document.getElementById("sign-in-form").classList.remove("hidden");
+
+      document.getElementById("sign-in").classList.remove("hidden");
       document.getElementById("capture-button").classList.add("hidden");
-      document.getElementById("sign-up").classList.remove("hidden");
+      document.getElementById("sign-out").classList.add("hidden");
       document.getElementById("progress-bar").classList.add("hidden");
       document.getElementById("pulse-logo").classList.remove("hidden");
       document.getElementById("navigation").classList.add("hidden");
@@ -178,12 +147,8 @@ function initApp() {
     }
   });
   $(".alert").alert();
-  document
-    .getElementById("sign-in")
-    .addEventListener("click", toggleSignIn, false);
-  document
-    .getElementById("sign-up")
-    .addEventListener("click", handleSignUp, false);
+  document.getElementById('sign-in').addEventListener('click', googleSignInButton, false);
+  document.getElementById('sign-out').addEventListener('click', signOut, false);
 }
 
 window.onload = function () {
