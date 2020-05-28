@@ -21,7 +21,7 @@ body {
 }
 
 .container {
-  margin: 5em auto;
+  margin: 10em auto;
   position: center;
 }
 
@@ -47,7 +47,7 @@ span.credits {
   color: var(--secondary-color);
 }
 .welcome {
-  margin: -2em 0 2em 0;
+  margin: -8em 0 2em 0;
 }
 span.welcome-span {
   font-size: 2.5em;
@@ -60,12 +60,12 @@ span.welcome-span {
   margin-left: 0.5em;
 }
 a:hover {
-  color: var(--primary-color) !important; 
+  color: var(--secondary-color) !important; 
+  text-decoration: none;
 }
 @media screen and (min-width: 768px) {
   .logo {
     margin-bottom: 2em;
     width: var(--logo-size-lg) !important;
   }
-
 }

@@ -11,6 +11,8 @@ let firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+
+
 function googleSignInButton() {
   const auth = firebase.auth();
   let provider = new firebase.auth.GoogleAuthProvider();
@@ -32,9 +34,7 @@ function googleSignInButton() {
           });
           return;
         }
-
         let provider = getProviderForProviderId(methods[0]);
-
         auth.signInWithPopup(provider).then(function(result) {
           result.user.linkAndRetrieveDataWithCredential(pendingCred).then(function(usercred) {
  
@@ -45,7 +45,7 @@ function googleSignInButton() {
   });
 }
 
-function signOut() {
+function signOut(event) {
   firebase.auth().signOut().then(function() {
     // Sign-out successful.
   }).catch(function(error) {
@@ -65,7 +65,7 @@ function uploadVideoToFirebase(event) {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       let pulseBox = storage.child("data/" + user.uid);
-
+      console.log(file)
       // Find all the prefixes and items.
       pulseBox
         .listAll()
@@ -82,9 +82,7 @@ function uploadVideoToFirebase(event) {
           });
         })
         .catch(function (error) {
-
-        });
-
+      });
       storage
         .child("data/" + user.uid + "/" + file.name)
         .put(file, metadata)
@@ -92,31 +90,30 @@ function uploadVideoToFirebase(event) {
           let progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           if (progress > 0) {
-            document.getElementById("progress-bar").classList.remove("hidden");
+            document.getElementById("progress-bar").classList.remove("hidden");  
           }
           document.getElementById("capture-button").classList.add("hidden");
-          
           document.querySelector(".progress-bar").style.width = progress + "%";
           console.log("Uploaded", snapshot.totalBytes, "bytes.");
         })
-        .catch(function (error) {
-          console.error("Upload failed:", error);
-        });
     }
   });
 }
 
+function resetButton() {
+  document.getElementById('').value = "";
+}
 function initApp() {
   signOut();
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      console.log(user.displayName);
-      document.getElementById("welcome-text").textContent = "Welcome, "+ user.displayName
+      document.getElementById("welcome-div").classList.remove('hidden');
+      document.getElementById("welcome-text").textContent = "Welcome, " + user.displayName
       document.getElementById("user-uid").textContent = user.uid;
       document
         .getElementById("capture-button")
         .addEventListener("change", uploadVideoToFirebase, false);
-      document.body.style.background = "white"
+      document.body.style.background = "white";
       document.getElementById("sign-in").classList.add("hidden");
       document.getElementById("capture-button").classList.remove("hidden");
       document.getElementById("sign-out").classList.remove("hidden");
@@ -127,14 +124,12 @@ function initApp() {
       document.getElementById("uid-badge").classList.remove("hidden");
       console.log("logged in");
     } else {
-      
-      document.body.style.background = "#3ED7F9"
-      document.getElementById("welcome-text").textContent = "";
+      document.body.style.background = "#3ED7F9";
+      document.getElementById("welcome-div").classList.add('hidden');
       document.getElementById("user-uid").textContent = "";
       document
         .getElementById("capture-button")
         .addEventListener("change", uploadVideoToFirebase, true);
-
       document.getElementById("sign-in").classList.remove("hidden");
       document.getElementById("capture-button").classList.add("hidden");
       document.getElementById("sign-out").classList.add("hidden");

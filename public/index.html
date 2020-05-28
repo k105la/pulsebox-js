@@ -41,7 +41,7 @@
     <!-- TODO: Hide button when logged out! -->
     <nav class="navbar navbar-dark bg-dark hidden" id="navigation">
       <a
-        class="navbar-brand mx-auto"
+        class="navbar-brand"
         href="https://github.com/akilhylton/pulsebox-js"
         target="__blank"
       >
@@ -61,8 +61,7 @@
         href="https://github.com/akilhylton/pulsetracker"
         target="__blank"
         class="alert-link"
-        >pulsetracker.</a
-      >
+        >pulsetracker.</a>
       <button
         type="button"
         class="close"
@@ -102,7 +101,7 @@
           />
         </g>
       </svg>
-      <div class="welcome">
+      <div class="welcome hidden" id="welcome-div">
       <span class="welcome-span" id="welcome-text"></span>
       </div>
       <div class="uid">
@@ -120,11 +119,11 @@
         ></div>
       </div>
 
-      <div id="sign-in" class="row hidden sign-in-button" style="color: white;"> 
+      <div id="sign-in" class="row hidden sign-in-button"> 
         <div class="col align-self-center">
           <a class="btn btn-outline-light btn-lg" role="button" style="text-transform:none">
-            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-            Login with Google
+            <img width="20px" style="margin-bottom:3px; margin-right:5px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+            Continue with Google
           </a>
         </div>
       </div>
@@ -133,8 +132,7 @@
         <div class="button-space">
         <label
           class="btn btn-outline-primary capture-button btn-lg mb-0 hidden"
-          id="capture-button"
-        >
+          id="capture-button">
           CAPTURE
           <input
             type="file"
@@ -142,9 +140,9 @@
             name="file"
             accept="video/*"
             capture="environment"
-            id="upload"
-          />
+            id="upload"/>
       </label>
+
       </div>
 
       <div>
@@ -155,15 +153,12 @@
       >
         Sign out
       </button>
-      </div>
+        </div>
+      </div>  
     </div>
-    </div>
-    <span class="credits"
-      >Code by <a href="https://github.com/akilhylton/" style="color: white;">Akil Hylton</a>.</span
-    >
+    
+    <span class="credits">Code by <a href="https://github.com/akilhylton/">Akil Hylton</a>.</span>
 
-
-  
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
@@ -171,17 +166,17 @@
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
       integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous">
+    </script>
   </body>
 </html>
