@@ -1,23 +1,28 @@
+
+:root {
+  --primary-color: #3ED7F9;
+  --secondary-color: white;
+  --logo-size-primary: 85%;
+  --logo-size-lg: 40em;
+}
+
 body {
+  margin: 0;
+  background-color: var(--primary-color);
+  font-family: 'Roboto', sans-serif;
   text-align: center;
 }
 
+.capture-button {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
 .container {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#capture-button {
-  margin: 1em 0 0.75em 0;
-}
-.header {
-  color: Dodgerblue;
-}
-
-form {
-  display: inline-block;
+  margin: 10em auto;
+  position: center;
 }
 
 span.credits {
@@ -25,32 +30,42 @@ span.credits {
   right: 1%;
   position: fixed;
   font-size: 0.9em;
-  color: dodgerblue;
+  color: var(--secondary-color);
 }
 
 .logo {
-  max-width: 85%;
+  max-width: var(--logo-size-primary);
 }
+
 .hidden {
   display: none;
-}
-.hidden-margin {
-  margin-right: 1rem;
-}
-.input-container {
-  padding-bottom: 0.8em;
 }
 .progress {
   margin-top: 2.5em;
 }
+.sign-in-button {
+  color: var(--secondary-color);
+}
+.welcome {
+  margin: -8em 0 2em 0;
+}
+span.welcome-span {
+  font-size: 2.5em;
+}
+.button-space {
+  margin-right: 0.75em;
+}
 #user-uid {
-  color: Dodgerblue;
   font-weight: bold;
   margin-left: 0.5em;
 }
-
-@media screen and (min-width: 900px) and (-webkit-min-device-pixel-ratio: 1) {
+a:hover {
+  color: var(--secondary-color) !important; 
+  text-decoration: none;
+}
+@media screen and (min-width: 768px) {
   .logo {
-    margin-bottom: 5em;
+    margin-bottom: 2em;
+    width: var(--logo-size-lg) !important;
   }
 }
