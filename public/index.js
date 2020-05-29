@@ -100,13 +100,15 @@ function uploadVideoToFirebase(event) {
   });
 }
 
-function resetButton() {
-  document.getElementById('').value = "";
-}
+
 function initApp() {
+  let numberOfClicks = 0;
   signOut();
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
+      if (numberOfClicks >= 0) {
+        numberOfClicks++
+      }
       document.getElementById("welcome-div").classList.remove('hidden');
       document.getElementById("welcome-text").textContent = "Welcome, " + user.displayName
       document.getElementById("user-uid").textContent = user.uid;
@@ -124,6 +126,12 @@ function initApp() {
       document.getElementById("uid-badge").classList.remove("hidden");
       console.log("logged in");
     } else {
+      if (numberOfClicks == 1) {
+        numberOfClicks++;
+        window.location.reload(true);
+        numberOfClicks = 0;
+        console.log(numberOfClicks);
+      }
       document.body.style.background = "#3ED7F9";
       document.getElementById("welcome-div").classList.add('hidden');
       document.getElementById("user-uid").textContent = "";
