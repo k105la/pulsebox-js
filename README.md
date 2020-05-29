@@ -1,5 +1,8 @@
 ![pulsebox](./public/images/PULSEBOX-V1.svg)
 
+![Continuous Integration](https://github.com/akilhylton/pulsebox-js/workflows/Continuous%20Integration/badge.svg)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 ## 💭 Background
 
 pulsebox is the data collector and storage solution for managing data between [pulsetracker](https://github.com/akilhylton/pulsetracker).
