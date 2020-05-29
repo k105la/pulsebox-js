@@ -1,6 +1,6 @@
 :root {
   --primary-color: #3ed7f9;
-  --secondary-color: #5E5E5E;
+  --secondary-color: #5e5e5e;
   --tertiary-color: #597278;
   --white: white;
   --logo-size-primary: 85%;
@@ -14,6 +14,11 @@ body {
   text-align: center;
 }
 
+.container {
+  margin: 10em auto;
+  position: center;
+}
+
 .capture-button {
   display: flex;
   flex-wrap: wrap;
@@ -21,17 +26,12 @@ body {
   justify-content: center;
 }
 
-.container {
-  margin: 10em auto;
-  position: center;
-}
-
 span.credits {
   bottom: 1%;
   right: 1%;
   position: fixed;
   font-size: 0.9em;
-  color: #5E5E5E;
+  color: #5e5e5e;
 }
 
 .logo {
@@ -55,17 +55,20 @@ span.credits {
 }
 span.welcome-span {
   font-weight: bold;
-  font-size: 2.5em;
+  font-size: 2em;
 }
 .button-space {
   margin-right: 0.75em;
+}
+.uid {
+  margin: 2em 0;
 }
 #user-uid {
   font-weight: bold;
   margin-left: 0.5em;
 }
 .author-name {
-  color: var(--secondary-color)
+  color: var(--secondary-color);
 }
 .author-name:hover {
   color: var(--tertiary-color) !important;

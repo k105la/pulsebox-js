@@ -38,8 +38,7 @@
   </head>
 
   <body>
-    <!-- TODO: Hide button when logged out! -->
-    <nav class="navbar navbar-dark bg-dark hidden" id="navigation">
+    <nav class="navbar navbar-dark bg-dark hidden" id="navigation-bar">
       <a
         class="navbar-brand"
         href="https://github.com/akilhylton/pulsebox-js"
@@ -54,7 +53,6 @@
       id="login-alert"
       role="alert"
     >
-      <strong>Holy guacamole!</strong>
       Take a ten second video or upload one. When done you can sign out and
       proceed to using the
       <a
@@ -103,10 +101,8 @@
       <div class="welcome hidden" id="welcome-div">
         <span class="welcome-span" id="welcome-text"></span>
       </div>
-      <div class="uid">
-        <span class="uid-tag badge badge-pill badge-dark hidden" id="uid-badge"
-          >UID</span
-        >
+      <div class="uid hidden" id="uid-badge">
+        <span class="uid-tag badge badge-pill badge-dark">UID</span>
         <span id="user-uid"></span>
       </div>
       <div class="progress hidden" id="progress-bar">
@@ -137,7 +133,7 @@
         </div>
       </div>
 
-      <div class="capture-button" style="margin-top: 2em;">
+      <div class="capture-button">
         <div class="button-space">
           <label
             class="btn btn-outline-primary capture-button btn-lg mb-0 hidden"
@@ -168,7 +164,10 @@
     </div>
 
     <span class="credits"
-      >Code by <a class="author-name" href="https://github.com/akilhylton/">Akil Hylton</a>.</span
+      >Code by
+      <a class="author-name" href="https://github.com/akilhylton/"
+        >Akil Hylton</a
+      >.</span
     >
 
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
