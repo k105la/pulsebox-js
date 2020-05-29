@@ -1,7 +1,8 @@
-
 :root {
-  --primary-color: #3ED7F9;
-  --secondary-color: white;
+  --primary-color: #3ed7f9;
+  --secondary-color: #5E5E5E;
+  --tertiary-color: #597278;
+  --white: white;
   --logo-size-primary: 85%;
   --logo-size-lg: 40em;
 }
@@ -9,7 +10,7 @@
 body {
   margin: 0;
   background-color: var(--primary-color);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   text-align: center;
 }
 
@@ -30,7 +31,7 @@ span.credits {
   right: 1%;
   position: fixed;
   font-size: 0.9em;
-  color: var(--secondary-color);
+  color: #5E5E5E;
 }
 
 .logo {
@@ -44,12 +45,16 @@ span.credits {
   margin-top: 2.5em;
 }
 .sign-in-button {
-  color: var(--secondary-color);
+  color: var(--white);
+}
+.sign-in-a:hover {
+  color: var(--primary-color) !important;
 }
 .welcome {
   margin: -8em 0 2em 0;
 }
 span.welcome-span {
+  font-weight: bold;
   font-size: 2.5em;
 }
 .button-space {
@@ -59,8 +64,11 @@ span.welcome-span {
   font-weight: bold;
   margin-left: 0.5em;
 }
-a:hover {
-  color: var(--secondary-color) !important; 
+.author-name {
+  color: var(--secondary-color)
+}
+.author-name:hover {
+  color: var(--tertiary-color) !important;
   text-decoration: none;
 }
 @media screen and (min-width: 768px) {
