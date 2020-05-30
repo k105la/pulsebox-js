@@ -52,14 +52,18 @@ function signOut() {
     });
 }
 
-function uploadVideoToFirebase(event) {
-  event.stopPropagation();
-  event.preventDefault();
+function uploadVideoToFirebase() {
   const storage = firebase.storage().ref();
-  let file = event.target.files[0];
-  let metadata = {
-    contentType: file.type,
-  };
+
+//  let file = event.target.files[0];
+//  let metadata = {
+ //   contentType: file.type,
+//};
+
+  let element = document.getElementById('upload');
+  let file = element.files[0];
+  let blob = file.slice(0, file.size, 'video/quicktime'); 
+  let  newFile = new File([blob], 'hr_test.MOV', {type: 'video/quicktime'});
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -74,13 +78,15 @@ function uploadVideoToFirebase(event) {
           });
           res.items.forEach(function (itemRef) {
             let pulseCurrentStorage = storage.child(itemRef.location.path_);
-            pulseCurrentStorage.delete().then(function () {});
+              pulseCurrentStorage.delete().then(function () {
+       console.log("Cleaning " + user.uid + " storage box.");
+              });
           });
+
         })
         .catch(function (error) {});
-      storage
-        .child("data/" + user.uid + "/" + file.name)
-        .put(file, metadata)
+    storage.child("data/" + user.uid + "/" + newFile.name)
+        .put(newFile)
         .on("state_changed", function (snapshot) {
           let progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
