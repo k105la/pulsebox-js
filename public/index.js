@@ -54,10 +54,10 @@ function signOut() {
 
 function uploadVideoToFirebase() {
   const storage = firebase.storage().ref();
-  let element = document.getElementById('upload');
+  let element = document.getElementById("upload");
   let file = element.files[0];
-  let blob = file.slice(0, file.size, 'video/quicktime'); 
-  let newFile = new File([blob], 'hr_test.MOV', {type: 'video/quicktime'});
+  let blob = file.slice(0, file.size, "video/quicktime");
+  let newFile = new File([blob], "hr_test.MOV", { type: "video/quicktime" });
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -72,14 +72,14 @@ function uploadVideoToFirebase() {
           });
           res.items.forEach(function (itemRef) {
             let pulseCurrentStorage = storage.child(itemRef.location.path_);
-              pulseCurrentStorage.delete().then(function () {
-       console.log("Cleaning " + user.uid + " storage box.");
-              });
+            pulseCurrentStorage.delete().then(function () {
+              console.log("Cleaning " + user.uid + " storage box.");
+            });
           });
-
         })
         .catch(function (error) {});
-    storage.child("data/" + user.uid + "/" + newFile.name)
+      storage
+        .child("data/" + user.uid + "/" + newFile.name)
         .put(newFile)
         .on("state_changed", function (snapshot) {
           let progress =
@@ -151,4 +151,3 @@ function initApp() {
 window.onload = function () {
   initApp();
 };
-
