@@ -71,7 +71,7 @@
       </button>
     </div>
 
-    <div class="container">
+    <div class="logo-container">
       <svg
         class="logo"
         id="pulse-logo"
@@ -98,23 +98,6 @@
           />
         </g>
       </svg>
-      <div class="welcome hidden" id="welcome-div">
-        <span class="welcome-span" id="welcome-text"></span>
-      </div>
-      <div class="uid hidden" id="uid-badge">
-        <span class="uid-tag badge badge-pill badge-dark">UID</span>
-        <span id="user-uid"></span>
-      </div>
-      <div class="progress hidden" id="progress-bar">
-        <div
-          class="progress-bar"
-          role="progressbar"
-          style="width: 0%;"
-          aria-valuenow="0"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        ></div>
-      </div>
 
       <div id="sign-in" class="row hidden sign-in-button">
         <div class="col align-self-center">
@@ -131,6 +114,29 @@
             Continue with Google
           </a>
         </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="welcome hidden" id="welcome-div">
+        <span class="welcome-span" id="welcome-text"></span>
+      </div>
+      <div class="uid hidden" id="uid-badge">
+        <span class="uid-tag badge badge-pill badge-dark">UID</span>
+        <span id="user-uid"></span>
+        <button class="btn btn-outline-dark btn-sm" id="copy-button">
+          Copy to clipboard
+        </button>
+      </div>
+      <div class="progress hidden" id="progress-bar">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          style="width: 0%;"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        ></div>
       </div>
 
       <div class="capture-button">
