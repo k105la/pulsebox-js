@@ -15,10 +15,14 @@ body {
 }
 
 .container {
-  margin: 5em auto;
+  margin: 10em auto;
   position: center;
 }
 
+.logo-container {
+  margin: 5em auto;
+  position: center;
+}
 .capture-button {
   display: flex;
   flex-wrap: wrap;
@@ -60,6 +64,9 @@ span.welcome-span {
 .button-space {
   margin-right: 0.75em;
 }
+#copy-button {
+  margin: 1.5em auto;
+}
 .uid {
   margin: 2em 0;
 }
@@ -78,5 +85,8 @@ span.welcome-span {
   .logo {
     margin-bottom: 2em;
     width: var(--logo-size-lg) !important;
+  }
+  #copy-button {
+    margin: auto 1em !important;
   }
 }

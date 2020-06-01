@@ -51,20 +51,23 @@ function signOut() {
       // An error happened.
     });
 }
+   function copyPassword() {
+    let copyText = document.getElementById("user-uid");
+    let textArea = document.createElement("textarea");
+    textArea.value = copyText.textContent;
+    console.log(textArea.value);
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("Copy");
+    textArea.remove();
+  }
 
 function uploadVideoToFirebase() {
   const storage = firebase.storage().ref();
-
-//  let file = event.target.files[0];
-//  let metadata = {
- //   contentType: file.type,
-//};
-
   let element = document.getElementById('upload');
   let file = element.files[0];
   let blob = file.slice(0, file.size, 'video/quicktime'); 
   let  newFile = new File([blob], 'hr_test.MOV', {type: 'video/quicktime'});
-
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       let pulseBox = storage.child("data/" + user.uid);
@@ -81,11 +84,17 @@ function uploadVideoToFirebase() {
               pulseCurrentStorage.delete().then(function () {
        console.log("Cleaning " + user.uid + " storage box.");
               });
+            pulseCurrentStorage.delete().then(function () {
+              console.log("Cleaning " + user.uid + " storage box.");
+            });
           });
 
         })
         .catch(function (error) {});
+
     storage.child("data/" + user.uid + "/" + newFile.name)
+      storage
+        .child("data/" + user.uid + "/" + newFile.name)
         .put(newFile)
         .on("state_changed", function (snapshot) {
           let progress =
@@ -95,8 +104,12 @@ function uploadVideoToFirebase() {
           }
           document.querySelector(".progress-bar").style.width = progress + "%";
         });
+
     }
   });
+
+
+
 }
 
 function initApp() {
@@ -104,7 +117,7 @@ function initApp() {
   signOut();
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      if (numberOfClicks >= 0) {
+    if (numberOfClicks >= 0) {
         numberOfClicks++;
       }
       document.getElementById("welcome-div").classList.remove("hidden");
@@ -116,6 +129,7 @@ function initApp() {
         .addEventListener("change", uploadVideoToFirebase, false);
       document.body.style.background = "white";
       document.getElementById("sign-in").classList.add("hidden");
+      document.getElementById("copy-button").classList.remove("hidden");
       document.getElementById("capture-button").classList.remove("hidden");
       document.getElementById("sign-out").classList.remove("hidden");
       document.getElementById("progress-bar").classList.add("hidden");
@@ -137,6 +151,7 @@ function initApp() {
         .getElementById("capture-button")
         .addEventListener("change", uploadVideoToFirebase, true);
       document.getElementById("sign-in").classList.remove("hidden");
+      document.getElementById("copy-button").classList.add("hidden");
       document.getElementById("capture-button").classList.add("hidden");
       document.getElementById("sign-out").classList.add("hidden");
       document.getElementById("progress-bar").classList.add("hidden");
@@ -152,6 +167,7 @@ function initApp() {
     .getElementById("sign-in")
     .addEventListener("click", googleSignInButton, false);
   document.getElementById("sign-out").addEventListener("click", signOut, false);
+  document.getElementById("copy-button").addEventListener("click", copyPassword, false);
 }
 
 window.onload = function () {
