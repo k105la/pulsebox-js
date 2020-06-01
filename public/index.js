@@ -51,23 +51,23 @@ function signOut() {
       // An error happened.
     });
 }
-   function copyPassword() {
-    let copyText = document.getElementById("user-uid");
-    let textArea = document.createElement("textarea");
-    textArea.value = copyText.textContent;
-    console.log(textArea.value);
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand("Copy");
-    textArea.remove();
-  }
+function copyPassword() {
+  let copyText = document.getElementById("user-uid");
+  let textArea = document.createElement("textarea");
+  textArea.value = copyText.textContent;
+  console.log(textArea.value);
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand("Copy");
+  textArea.remove();
+}
 
 function uploadVideoToFirebase() {
   const storage = firebase.storage().ref();
-  let element = document.getElementById('upload');
+  let element = document.getElementById("upload");
   let file = element.files[0];
-  let blob = file.slice(0, file.size, 'video/quicktime'); 
-  let  newFile = new File([blob], 'hr_test.MOV', {type: 'video/quicktime'});
+  let blob = file.slice(0, file.size, "video/quicktime");
+  let newFile = new File([blob], "hr_test.MOV", { type: "video/quicktime" });
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       let pulseBox = storage.child("data/" + user.uid);
@@ -81,18 +81,17 @@ function uploadVideoToFirebase() {
           });
           res.items.forEach(function (itemRef) {
             let pulseCurrentStorage = storage.child(itemRef.location.path_);
-              pulseCurrentStorage.delete().then(function () {
-       console.log("Cleaning " + user.uid + " storage box.");
-              });
+            pulseCurrentStorage.delete().then(function () {
+              console.log("Cleaning " + user.uid + " storage box.");
+            });
             pulseCurrentStorage.delete().then(function () {
               console.log("Cleaning " + user.uid + " storage box.");
             });
           });
-
         })
         .catch(function (error) {});
 
-    storage.child("data/" + user.uid + "/" + newFile.name)
+      storage.child("data/" + user.uid + "/" + newFile.name);
       storage
         .child("data/" + user.uid + "/" + newFile.name)
         .put(newFile)
@@ -104,12 +103,8 @@ function uploadVideoToFirebase() {
           }
           document.querySelector(".progress-bar").style.width = progress + "%";
         });
-
     }
   });
-
-
-
 }
 
 function initApp() {
@@ -117,7 +112,7 @@ function initApp() {
   signOut();
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-    if (numberOfClicks >= 0) {
+      if (numberOfClicks >= 0) {
         numberOfClicks++;
       }
       document.getElementById("welcome-div").classList.remove("hidden");
@@ -167,7 +162,9 @@ function initApp() {
     .getElementById("sign-in")
     .addEventListener("click", googleSignInButton, false);
   document.getElementById("sign-out").addEventListener("click", signOut, false);
-  document.getElementById("copy-button").addEventListener("click", copyPassword, false);
+  document
+    .getElementById("copy-button")
+    .addEventListener("click", copyPassword, false);
 }
 
 window.onload = function () {
