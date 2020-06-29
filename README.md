@@ -3,6 +3,8 @@
 ![Continuous Integration](https://github.com/akilhylton/pulsebox-js/workflows/Continuous%20Integration/badge.svg)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
+### Contributions are definitely appreciated however, this project is deprectated so please refer to [pulsetracker](https://github.com/akilhylton/pulsetracker/tree/ui) this is where the new version of this project has been moved. 
+
 ## 💭 Background
 
 pulsebox is the data collector and storage solution for managing data between [pulsetracker](https://github.com/akilhylton/pulsetracker).
